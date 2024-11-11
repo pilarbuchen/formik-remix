@@ -5,6 +5,8 @@ import commonStyles from '~/styles/common-styles.module.scss';
 import { getUrlOriginWithPath } from '~/utils';
 import TypescriptSvg from '../../../src/assets/svg/typescript.svg';
 import ViteSvg from '../../../src/assets/svg/vite.svg';
+import { MyFormikComponent } from '../../../src/components/my-formik-component/my-formik-component';
+import { Formik, Form, Field } from 'formik';
 
 export const loader = ({ request }: LoaderFunctionArgs) => {
     return { canonicalUrl: getUrlOriginWithPath(request.url) };
@@ -13,6 +15,15 @@ export const loader = ({ request }: LoaderFunctionArgs) => {
 export default function HomePage() {
     return (
         <div className={styles.root}>
+              <div>
+        <Formik initialValues={{ email: '' }} onSubmit={(values) => console.log(values)}>
+            <Form>
+                <label>Email:</label>
+                <Field type="email" name="email" />
+                <button type="submit">Submit</button>
+            </Form>
+        </Formik>
+    </div>
             <h2 className={styles.title}>Welcome to your App Homepage 🎉</h2>
             <span>
                 Double click to edit App component
